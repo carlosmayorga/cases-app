@@ -1,0 +1,61 @@
+
+<h1>Casos</h1>
+
+<hr>
+
+<div class="row">
+  <div class="col text-right">
+    <button routerLink="/case/new"
+            class="btn btn-primary">
+      <i class="fa fa-plus"></i>
+      Agregar
+    </button>
+  </div>
+</div>
+
+<table *ngIf="!loading && cases.length > 0"
+       class="table mt-3 animated fadeIn faster">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Número</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Estado</th>
+      <th scope="col">Admin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let case of cases; let i = index;">
+      <th scope="row">{{i + 1}}</th>
+      <td>{{case.name}}</td>
+      <td>{{case.lastname}}</td>
+      <td>{{case.state}}</td>
+      <td>
+        <button class="btn btn-info mr-1"
+                [routerLink]="['/case', case.id]">
+          <i class="fa fa-pen"></i>
+        </button>
+        <button class="btn btn-danger"
+                (click)="deleteCase(case, i)">
+          <i class="fa fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="loading"
+     class="alert alert-info text-center mt-3 animated fadeIn faster">
+  <h4 class="alert-heading">Cargando...</h4>
+  <p>
+    <i class="fab fa-angular fa-spin fa-3x angular-red"></i>
+  </p>
+</div>
+
+<div *ngIf="!loading && cases.length === 0"
+     class="alert alert-warning text-center mt-3">
+  <h4 class="alert-heading">No se encontró</h4>
+  <p>
+    <i class="fas fa-swimmer fa-3x"></i>
+  </p>
+</div>

@@ -1,0 +1,82 @@
+<h1>Detalle del caso</h1>
+<hr>
+
+<div class="row text-right">
+  <div class="col">
+    <button routerLink="/cases"
+            class="btn btn-primary">
+      <i class="fa fa-arrow-left"></i>
+      Regresar
+    </button>
+  </div>
+</div>
+
+  <div class="row animated fadeIn faster">
+    <div class="col">
+
+      <form (ngSubmit)="manageCase(caseForm)" #caseForm="ngForm">
+
+        <div class="form-group">
+          <label>Id</label>
+          <input type="text"
+                 placeholder="Id del caso"
+                 class="form-control"
+                 disabled="disable"
+                 name="id"
+                 [(ngModel)]="caseModel.id">
+          <small class="form-text text-muted">
+            Este es el Id del caso generado en Firebase
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text"
+                 required
+                 placeholder="Eg. Carlos"
+                 class="form-control"
+                 name="name"
+                 [(ngModel)]="caseModel.name">
+        </div>
+
+        <div class="form-group">
+          <label>Apellido</label>
+          <input type="text"
+                 required
+                 placeholder="Eg. Mayorga"
+                 class="form-control"
+                 name="lastname"
+                 [(ngModel)]="caseModel.lastname">
+        </div>
+
+        <div class="form-group">
+          <label>Estado</label>
+          <br>
+          <button *ngIf="caseModel.state=='Abierto'"
+                  (click)="caseModel.state='Cerrado'"
+                  class="btn btn-outline-success w-50" type="button">
+            <i class="fa fa-smile-wink"></i>
+            Abierto
+          </button>
+          <button *ngIf="caseModel.state=='Cerrado'"
+                  (click)="caseModel.state='Abierto'"
+                  class="btn btn-outline-danger w-50" type="button">
+            <i class="fa fa-dizzy"></i>
+            Cerrado
+          </button>
+        </div>
+
+        <hr>
+        <div class="form-group text-center">
+          <button type="submit" class="btn btn-primary w-25">
+            <i class="fa fa-save"></i>
+            Guardar
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+
